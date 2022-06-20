@@ -1,0 +1,105 @@
+Screen:
+    MDNavigationLayout:
+        ScreenManager:
+            Screen:
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDToolbar:
+                        id:toolbar
+                        title: 'About Us'
+                        specific_text_color: 1,1,1,1
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state('toggle')]]
+                        elevation:0
+                    Widget:
+    MDSwiper:
+        size_hint_y: None
+        height: root.height - toolbar.height - dp(40)
+        y: root.height - self.height - toolbar.height - dp(20)
+        width_mult: 3
+        on_swipe: app.swiped()
+        MDSwiperItem:
+            orientation:'vertical'
+            MDCard:
+                orientation:'vertical'
+                elevation:0
+                md_bg_color:1,1,215/255,1
+                radius:[20,20,20,20]
+                FitImage:
+                    id:ima
+                    source: "a.png"
+                    radius:[20,20,0,0]
+                MDBoxLayout:
+                    id:box
+                    adaptive_height: True
+                    spacing: "12dp"
+                    height:'30dp'
+
+                    MDLabel:
+                        text: "TrueFresh"
+                        halign:'center'
+                        font_name: "BRITANIC.ttf"
+                        font_size: 18
+                        pos_hint:{"center_x":0.9,"center_y":0.5}
+                    MDIconButton:
+                        icon:'information-outline'
+                        pos_hint_x: None
+                        width:'0dp'
+                        on_press: app.pressed(1)
+
+        MDSwiperItem:
+            orientation:'vertical'
+            MDCard:
+                orientation:'vertical'
+                elevation:0
+                md_bg_color:1,1,215/255,1
+                radius:[20,20,20,20]
+                FitImage:
+                    id:ima2
+                    source: "aaa.png"
+                    radius:[20,20,0,0]
+                MDBoxLayout:
+                    id:box
+                    adaptive_height: True
+                    spacing: "12dp"
+                    height:'30dp'
+
+                    MDLabel:
+                        text: "CEO"
+                        halign:'center'
+                        font_name: "BRITANIC.ttf"
+                        font_size: 18
+                        pos_hint:{"center_x":0.9,"center_y":0.5}
+                    MDIconButton:
+                        icon:'information-outline'
+                        pos_hint_x: None
+                        width:'0dp'
+                        on_press: app.pressed(2)
+
+        MDSwiperItem:
+            orientation:'vertical'
+            MDCard:
+                orientation:'vertical'
+                elevation:0
+                md_bg_color:1,1,215/255,1
+                radius:[20,20,20,20]
+                FitImage:
+                    id:ima3
+                    source: "123.png"
+                    radius:[20,20,0,0]
+                MDBoxLayout:
+                    id:box
+                    adaptive_height: True
+                    spacing: "12dp"
+                    height:'30dp'
+
+                    MDLabel:
+                        text: "Head Developer"
+                        halign:'center'
+                        font_name: "BRITANIC.ttf"
+                        font_size: 18
+                        pos_hint:{"center_x":0.9,"center_y":0.5}
+                    MDIconButton:
+                        icon:'information-outline'
+                        pos_hint_x: None
+                        width:'0dp'
+                        on_press: app.pressed(3)

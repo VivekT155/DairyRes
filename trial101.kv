@@ -1,0 +1,1019 @@
+WindowManager:
+    FirstWindow:
+    SecondWindow:
+    ThirdWindow:
+    ForthWindow:
+    FifthWindow:
+    SixthWindow:
+    SeventhWindow:
+    EighthWindow:
+    NinthWindow:
+
+<FirstWindow>:
+    name: "first"
+    MDFloatLayout:
+        Image:
+            source: "123.png"
+            size_hint_y: None
+            height: "240dp"
+            pos_hint: {"y": .60}
+
+    MDLabel:
+        id: welcome_label
+        text: "Welcome To TrueFresh"
+        font_name: "BRITANIC.ttf"
+        color: app.theme_cls.primary_color
+        pos_hint: {"center_x": 0.5,"center_y": 0.20}
+        text_color: 1, 1, 0, 1
+        font_size: 18
+        halign: 'center'
+        size_hint_y: None
+        height: self.texture_size[1]
+        padding_y: 15
+
+    MDTextFieldRound:
+        id: phn_login
+        hint_text: "Phone Number"
+        color_active: 152/255,251/255,152/255,1
+        icon_left: "account"
+        size_hint_x: None
+        width: 150
+        font_size: 14
+        pos_hint: {"center_x": 0.5,"center_y": 0.6}
+    MDTextFieldRound:
+        id: password
+        hint_text: "OTP"
+        color_active: 152/255,251/255,152/255,1
+        icon_left: "key"
+        size_hint_x: None
+        width: 150
+        font_size: 14
+        pos_hint: {"center_x": 0.5,"center_y": 0.52}
+        password: False
+
+    MDRoundFlatButton:
+        id: login_otp
+        text: "GENERATE OTP"
+        font_size: 12
+        size_hint_y: 0.05
+        pos_hint: {"center_x": 0.5,"center_y": 0.44}
+        on_press: app.generate_otp_login()
+
+    MDRoundFlatButton:
+        text: "        LOG IN        "
+        pos_hint: {"center_x": 0.5,"center_y": 0.36}
+        on_release:
+            app.root.current = "third"
+            #root.manager.transition.direction = "up"
+
+    MDRoundFlatButton:
+        text: "SIGN UP"
+        font_size: 12
+        pos_hint: {"center_x": 0.5,"center_y": 0.28}
+        on_release:
+            app.root.current = "second"
+            root.manager.transition.direction = "left"
+
+
+<SecondWindow>:
+    name: "second"
+    MDFloatLayout:
+        Image:
+            source: "qwert.png"
+            size_hint_y: None
+            height: "240dp"
+            pos_hint: {"y": .60}
+
+    MDLabel:
+        id: welcome_label
+        text: "Create Account"
+        font_name: "BRITANIC.ttf"
+        color: app.theme_cls.primary_color
+        pos_hint: {"center_x": 0.5,"center_y": 0.6}
+        text_color: 1, 1, 0, 1
+        font_size: 22
+        halign: 'center'
+        size_hint_y: None
+        height: self.texture_size[1]
+        padding_y: 15
+
+    MDTextFieldRound:
+        id: username
+        hint_text: "USERNAME"
+        color_active: 152/255,251/255,152/255,1
+        size_hint_x: None
+        width: 170
+        font_size: 14
+        pos_hint: {"center_x": 0.5,"center_y": 0.52}
+
+    MDTextFieldRound:
+        id: phone
+        hint_text: "PHONE NO."
+        color_active: 152/255,251/255,152/255,1
+        size_hint_x: None
+        width: 170
+        font_size: 14
+        pos_hint: {"center_x": 0.5,"center_y": 0.42}
+    MDRoundFlatButton:
+        text: "GENERATE OTP"
+        font_size: 12
+        pos_hint: {"center_x": 0.5,"center_y": 0.32}
+        on_press: app.generate_otp()
+
+    MDTextFieldRound:
+        id: otp
+        hint_text: "OTP"
+        color_active: 152/255,251/255,152/255,1
+        size_hint_x: None
+        width: 170
+        font_size: 14
+        pos_hint: {"center_x": 0.5,"center_y": 0.22}
+
+    MDRoundFlatButton:
+        text: "SIGN UP"
+        font_size: 12
+        pos_hint: {"center_x": 0.5,"center_y": 0.13}
+        on_press: app.signup()
+
+    MDIconButton:
+        icon: 'arrow-left-thin-circle-outline'
+        font_size: 12
+        theme_text_color: "Custom"
+        text_color: app.theme_cls.primary_color
+        pos_hint: {"center_x": 0.5,"center_y": 0.05}
+        #on_press: app.clear()
+        on_release:
+            app.root.current = "first"
+            root.manager.transition.direction = "right"
+
+<ThirdWindow>:
+    name: 'third'
+    MDNavigationLayout:
+        ScreenManager:
+            Screen:
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDToolbar:
+                        title: 'TrueFresh'
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state('toggle')]]
+                        elevation:10
+
+                    Widget:
+
+                MDCard:
+                    size_hint: None, None
+                    size: "290dp", "35dp"
+                    #md_bg_color: 1,1,0,1
+                    pos_hint: {"center_x": .5, "center_y": .8}
+                    MDChooseChip:
+
+                        MDChip:
+                            text: 'MORNING'
+                            text_color: "white"
+                            icon: ''
+                            selected_chip_color: 186/255, 74/255, 74/255, 1
+                            on_press: app.user_selection().morning()
+
+                        MDChip:
+                            text: 'EVENING'
+                            text_color: "white"
+                            icon: ''
+                            selected_chip_color: 186/255, 74/255, 74/255, 1
+                            on_press: app.user_selection().evening()
+
+                        MDChip:
+                            text: 'BOTH'
+                            text_color: "white"
+                            icon: ''
+                            selected_chip_color: 186/255, 74/255, 74/255, 1
+                            on_press: app.user_selection().both()
+
+                MDCard:
+                    size_hint: None, None
+                    size: "241dp", "35dp"
+                    #md_bg_color: 1,1,0,1
+                    pos_hint: {"center_x": .5, "center_y": .7}
+                    MDChooseChip:
+
+                        MDChip:
+                            text: 'COW'
+                            text_color: "white"
+                            icon: ''
+                            selected_chip_color: 89/255, 186/255, 74/255, 1
+                            on_press: app.user_selection().cow()
+
+                        MDChip:
+                            text: 'BUFFALO'
+                            text_color: "white"
+                            icon: ''
+                            selected_chip_color: 89/255, 186/255, 74/255, 1
+                            on_press: app.user_selection().buffalo()
+
+                        MDChip:
+                            text: 'MIX'
+                            text_color: "white"
+                            icon: ''
+                            selected_chip_color: 89/255, 186/255, 74/255, 1
+                            on_press: app.user_selection().mix()
+
+                MDCard:
+                    size_hint: None, None
+                    size: "221dp", "35dp"
+                    #md_bg_color: 1,1,0,1
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    MDChooseChip:
+
+                        MDChip:
+                            text: 'EVERYDAY'
+                            text_color: "white"
+                            icon: ''
+                            selected_chip_color: 186/255, 74/255, 74/255, 1
+                            on_press: app.user_selection().frequency_eve()
+
+                        MDChip:
+                            text: 'ONE TIME'
+                            text_color: "white"
+                            icon: ''
+                            selected_chip_color: 186/255, 74/255, 74/255, 1
+                            on_press: app.user_selection().frequency_one()
+
+                MDFloatLayout:
+
+                    MDIconButton:
+                        id:'date_picker'
+                        icon: 'calendar'
+                        theme_text_color: "Custom"
+                        text_color: app.theme_cls.primary_color
+                        pos_hint: {'center_x': .5, 'center_y': .4}
+                        user_font_size: 45
+                        on_press: app.show_date_picker()
+
+                BoxLayout:
+                    spacing: "40dp"
+                    size_hint_y: None
+                    pos_hint: {'center_x': .5, 'center_y': .2}
+                    height: self.minimum_height
+
+                    Widget:
+
+                    MDIconButton:
+                        icon: "minus"
+                        md_bg_color: app.theme_cls.primary_color
+                        user_font_size: "14sp"
+                        on_release: label_value.value -= 0.5 if label_value.value > 0 else 0
+
+                    Label:
+                        id:label_value
+                        value: 1
+                        text: str(self.value)
+                        size_hint: None, None
+                        size: self.texture_size
+                        color: 0,0,0,1
+                        pos_hint: {"center_y": .5}
+                    MDIconButton:
+                        icon: "plus"
+                        md_bg_color: app.theme_cls.primary_color
+                        user_font_size: "14sp"
+                        on_release: label_value.value += 0.5
+
+                    Widget
+
+                Label:
+                    text: "FREQUENCY"
+                    bold: True
+                    pos_hint: {"center_x": .5, "center_y": .57}
+                    font_size: '20sp'
+                    color: 47/255,79/255,79/255,1
+
+                Label:
+                    id:meow
+                    text: ""
+                    bold: False
+                    pos_hint: {"center_x": .5, "center_y": .34}
+                    font_size: '14sp'
+                    color: 47/255,79/255,79/255,1
+
+                Label:
+                    text: "QUANTITY"
+                    bold: True
+                    pos_hint: {"center_x": .5, "center_y": .28}
+                    font_size: '21sp'
+                    color: 47/255,79/255,79/255,1
+
+                Label:
+                    text: "KG"
+                    bold: True
+                    pos_hint: {"center_x": .5, "center_y": .15}
+                    font_size: '16sp'
+                    color: 47/255,79/255,79/255,1
+
+                MDFillRoundFlatButton:
+                    text: " PLACE  ORDER "
+                    md_bg_color: 0,139/255,139/255,1
+                    theme_text_color: "Custom"
+                    text_color: 1,1,1,1
+                    pos_hint: {'center_x': .5, 'center_y': .07}
+                    on_press: app.confirm_order() #app.user_selection().print_details()
+
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            ContentNavigationDrawer:
+
+<ForthWindow>:
+    name:"four"
+    MDNavigationLayout:
+        ScreenManager:
+            Screen:
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDToolbar:
+                        title: 'COMPLAINT'
+                        specific_text_color: 1,1,1,1
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state('toggle')]]
+                        elevation:10
+
+                    Widget:
+
+    MDBoxLayout:
+        orientation:'vertical'
+        #md_bg_color: 1,0,1,1
+        size_hint_y: None
+        height: 120
+
+
+        pos_hint:{"Center_x":0.5,"center_y":0.75}
+
+        MDLabel:
+            text:"CATEGORY"
+            theme_text_color: "Hint"
+            halign: 'center'
+            font_name: "BRITANIC.ttf"
+            font_size: 22
+
+        GridLayout:
+            size_hint_y: None
+            adaptive_height: True
+            cols:2
+            Label:
+                text:"Quality"
+                font_name: "BRITANIC.ttf"
+                color: app.theme_cls.primary_color
+                font_size: 20
+            MDCheckbox:
+                on_active: app.checkbox_click(self,self.active,"Quality")
+
+            Label:
+                text:"Manager"
+                font_name: "BRITANIC.ttf"
+                color: app.theme_cls.primary_color
+                font_size: 20
+            MDCheckbox:
+                on_active: app.checkbox_click(self,self.active,"Manager")
+
+            Label:
+                text:"Delivery"
+                font_name: "BRITANIC.ttf"
+                color: app.theme_cls.primary_color
+                font_size: 20
+            MDCheckbox:
+                on_active: app.checkbox_click(self,self.active,"Delivery")
+
+            Label:
+                text:"Quantity"
+                font_name: "BRITANIC.ttf"
+                color: app.theme_cls.primary_color
+                font_size: 20
+            MDCheckbox:
+                on_active: app.checkbox_click(self,self.active,"Quantity")
+
+    MDLabel:
+        id: hint
+        text: "Please briefly explain your problem below."
+        theme_text_color: "Hint"
+        font_name: "BRITANIC.ttf"
+        pos_hint: {"center_x": 0.5,"center_y": 0.58}
+        font_size: 16
+        halign: 'center'
+        size_hint_y: None
+        height: self.texture_size[1]
+        padding_x: 20
+
+    MDTextField:
+        id: user
+        #hint_text: "Complaint"
+        multiline: True
+        mode: "fill"
+        radius: [10,10,10,10]
+        max_height: "100dp"
+        color_active: 1, 0, 0, 1
+        size_hint_x: None
+        width: 280
+        font_size: 14
+        pos_hint: {"center_x": 0.5,"center_y": 0.46}
+
+    MDRoundFlatButton:
+        text: "SEND"
+        font_size: 12
+        pos_hint: {"center_x": 0.5,"center_y": 0.33}
+        on_press: app.clear()
+    MDNavigationDrawer:
+        id: nav_drawer
+        ContentNavigationDrawer:
+<FifthWindow>:
+    name: "fifth"
+    MDFloatLayout:
+        Image:
+            source: "qwert.png"
+            size_hint_y: None
+            height: "240dp"
+            pos_hint: {"y": .60}
+
+    MDLabel:
+        id: welcome_label
+        text: "RESET YOUR PASSWORD"
+        font_name: "BRITANIC.ttf"
+        color: app.theme_cls.primary_color
+        pos_hint: {"center_x": 0.5,"center_y": 0.6}
+        text_color: 1, 1, 0, 1
+        font_size: 22
+        halign: 'center'
+        size_hint_y: None
+        height: self.texture_size[1]
+        padding_y: 15
+
+    MDTextFieldRound:
+        id: user
+        hint_text: "PHONE NUMBER"
+        color_active: 152/255,251/255,152/255,1
+        size_hint_x: None
+        width: 170
+        font_size: 14
+        pos_hint: {"center_x": 0.5,"center_y": 0.50}
+        required: True
+
+    MDRoundFlatButton:
+        text: "GENERATE OTP"
+        font_size: 12
+        pos_hint: {"center_x": 0.5,"center_y": 0.415}
+
+    MDTextFieldRound:
+        id: user
+        hint_text: "OTP"
+        color_active: 152/255,251/255,152/255,1
+        size_hint_x: None
+        width: 170
+        font_size: 14
+        pos_hint: {"center_x": 0.5,"center_y": 0.32}
+
+    MDTextFieldRound:
+        id: user
+        hint_text: "NEW PASSWORD"
+        color_active: 152/255,251/255,152/255,1
+        size_hint_x: None
+        width: 170
+        font_size: 14
+        pos_hint: {"center_x": 0.5,"center_y": 0.22}
+
+    MDRoundFlatButton:
+        text: "RESET"
+        font_size: 12
+        pos_hint: {"center_x": 0.5,"center_y": 0.13}
+
+    MDIconButton:
+        icon: 'arrow-right-thin-circle-outline'
+        font_size: 12
+        theme_text_color: "Custom"
+        text_color: app.theme_cls.primary_color
+        pos_hint: {"center_x": 0.5,"center_y": 0.05}
+        #on_press: app.clear()
+        on_release:
+            app.root.current = "first"
+            root.manager.transition.direction = "left"
+
+<SixthWindow>:
+    name: "sixth"
+    MDNavigationLayout:
+        ScreenManager:
+            Screen:
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDToolbar:
+                        title: 'Rate'
+                        specific_text_color: 1,1,1,1
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state('toggle')]]
+                        elevation:0
+                        MDIconButton:
+                            id: refresh
+                            icon:'refresh'
+                            pos_hint:{"center_x":0.5,"center_y":0.5}
+                            theme_text_color:"Custom"
+                            text_color: 'white'
+                    Widget:
+    MDCard:
+        padding: 12
+        size_hint: None, None
+        size: "280dp","120dp"
+        pos_hint:{"center_x":0.5,"center_y": 0.74}
+        md_bg_color:app.theme_cls.primary_color
+        elevation: 20
+        radius: [10,10,10,10]
+        orientation:'vertical'
+
+        MDLabel:
+            id: label
+            halign:'center'
+            pos_hint:{"center_y":0.5}
+            text: "RS 30/L"
+            font_name: "BRITANIC.ttf"
+            color:1,1,1,1
+            font_size: 38
+
+        MDLabel:
+            id: prev_cost
+            halign:'center'
+            pos_hint:{"center_y":0.8}
+            #text: "35/KG"
+            font_name: "BRITANIC.ttf"
+            color:1,1,1,0.6
+            font_size: 22
+            markup: True
+            text: '[s]35/L[/s]'
+
+
+
+    MDBoxLayout:
+        size_hint: None, None
+        size: "272dp", "80dp"
+        #md_bg_color: 1,1,0,1
+        pos_hint: {"center_x": .5, "center_y": .55}
+        orientation: 'vertical'
+        MDChooseChip:
+
+            MDChip:
+                text: ' COW '
+                text_color: "white"
+                icon: ''
+                selected_chip_color: 89/255, 186/255, 74/255, 1
+                on_press: app.fetchcosts()
+
+            MDChip:
+                text: 'BUFFALO'
+                text_color: "white"
+                icon: ''
+                selected_chip_color: 186/255, 74/255, 74/255, 1
+                #on_press: app.user_selection().buffalo()
+
+            MDChip:
+                text: ' GHEE '
+                text_color: "white"
+                icon: ''
+                selected_chip_color: 186/255, 74/255, 74/255, 1
+                #on_press: app.user_selection().buffalo()
+
+            MDChip:
+                text: 'LASSI'
+                text_color: "white"
+                icon: ''
+                selected_chip_color: 186/255, 74/255, 74/255, 1
+                #on_press: app.user_selection().buffalo()
+
+            MDChip:
+                text: 'PANEER'
+                text_color: "white"
+                icon: ''
+                selected_chip_color: 186/255, 74/255, 74/255, 1
+                #on_press: app.user_selection().buffalo()
+
+            MDChip:
+                text: 'YOGURT'
+                text_color: "white"
+                icon: ''
+                selected_chip_color: 186/255, 74/255, 74/255, 1
+                #on_press: app.user_selection().buffalo()
+
+    MDLabel:
+        id: hint
+        text: "*Please refresh the rates before considering."
+        theme_text_color: "Hint"
+        font_name: "BRITANIC.ttf"
+        pos_hint: {"center_x": 0.5,"center_y": 0.43}
+        font_size: 16
+        halign: 'center'
+        size_hint_y: None
+        height: self.texture_size[1]
+        padding_x: 20
+
+    MDLabel:
+        id: hint
+        text: "Last updated on: "
+        theme_text_color: "Hint"
+        font_name: "BRITANIC.ttf"
+        pos_hint: {"center_x": 0.5,"center_y": 0.04}
+        font_size: 16
+        halign: 'center'
+        size_hint_y: None
+        height: self.texture_size[1]
+        padding_x: 20
+
+    MDNavigationDrawer:
+        id: nav_drawer
+        ContentNavigationDrawer:
+
+<SeventhWindow>:
+    name:'seventh'
+    MDNavigationLayout:
+        ScreenManager:
+            Screen:
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDToolbar:
+                        id:toolbar
+                        title: 'About Us'
+                        specific_text_color: 1,1,1,1
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state('toggle')]]
+                        elevation:0
+                    Widget:
+
+    MDSwiper:
+        id:swiper
+        size_hint_y: None
+        height: root.height - toolbar.height - dp(40)
+        y: root.height - self.height - toolbar.height - dp(20)
+        width_mult: 3
+        on_swipe: app.swiped()
+        MDSwiperItem:
+            orientation:'vertical'
+            MDCard:
+                orientation:'vertical'
+                elevation:0
+                md_bg_color:1,1,215/255,1
+                radius:[20,20,20,20]
+                FitImage:
+                    id:ima
+                    source: "a.png"
+                    radius:[20,20,0,0]
+                MDBoxLayout:
+                    id:box
+                    adaptive_height: True
+                    spacing: "12dp"
+                    height:'30dp'
+
+                    MDLabel:
+                        text: "TrueFresh"
+                        halign:'center'
+                        font_name: "BRITANIC.ttf"
+                        font_size: 18
+                        pos_hint:{"center_x":0.9,"center_y":0.5}
+                    MDIconButton:
+                        icon:'information-outline'
+                        pos_hint_x: None
+                        width:'0dp'
+                        on_press: app.pressed(1)
+
+        MDSwiperItem:
+            orientation:'vertical'
+            MDCard:
+                orientation:'vertical'
+                elevation:0
+                md_bg_color:1,1,215/255,1
+                radius:[20,20,20,20]
+                FitImage:
+                    id:ima2
+                    source: "aaa.png"
+                    radius:[20,20,0,0]
+                MDBoxLayout:
+                    id:box
+                    adaptive_height: True
+                    spacing: "12dp"
+                    height:'30dp'
+
+                    MDLabel:
+                        text: "CEO"
+                        halign:'center'
+                        font_name: "BRITANIC.ttf"
+                        font_size: 18
+                        pos_hint:{"center_x":0.9,"center_y":0.5}
+                    MDIconButton:
+                        icon:'information-outline'
+                        pos_hint_x: None
+                        width:'0dp'
+                        on_press: app.pressed(2)
+
+        MDSwiperItem:
+            orientation:'vertical'
+            MDCard:
+                orientation:'vertical'
+                elevation:0
+                md_bg_color:1,1,215/255,1
+                radius:[20,20,20,20]
+                FitImage:
+                    id:ima3
+                    source: "123.png"
+                    radius:[20,20,0,0]
+                MDBoxLayout:
+                    id:box
+                    adaptive_height: True
+                    spacing: "12dp"
+                    height:'30dp'
+
+                    MDLabel:
+                        text: "Head Developer"
+                        halign:'center'
+                        font_name: "BRITANIC.ttf"
+                        font_size: 18
+                        pos_hint:{"center_x":0.9,"center_y":0.5}
+                    MDIconButton:
+                        icon:'information-outline'
+                        pos_hint_x: None
+                        width:'0dp'
+                        on_press: app.pressed(3)
+    MDNavigationDrawer:
+        id: nav_drawer
+        ContentNavigationDrawer:
+
+<EighthWindow>:
+    name:'eighth'
+    MDNavigationLayout:
+        ScreenManager:
+            Screen:
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDToolbar:
+                        title: 'Contact Us'
+                        size_hint_y: 0.12
+                        specific_text_color: 1,1,1,1
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state('toggle')]]
+                        elevation:0
+                    Widget:
+    MDCard:
+        #padding: sp(1)
+        size_hint: .95, .33
+        #size: "280dp","120dp"
+        adaptive_size: True
+        pos_hint:{"center_x":0.5,"center_y": 0.72}
+        #md_bg_color:app.theme_cls.primary_color
+        elevation: sp(20)
+        radius: [sp(10),sp(10),sp(10),sp(10)]
+        orientation:'vertical'
+
+        Image:
+            source:"contact.jpg"
+            radius: [sp(10),sp(10),sp(10),sp(10)]
+
+    MDCard:
+        padding: sp(12)
+        size_hint: .95, .06
+        #size: "280dp","120dp"
+        adaptive_size: True
+        pos_hint:{"center_x":0.5,"center_y": 0.49}
+        md_bg_color:app.theme_cls.primary_color
+        elevation: sp(20)
+        radius: [sp(10),sp(10),sp(10),sp(10)]
+        #orientation:'horizontal'
+
+        MDIcon:
+            icon:'gmail'
+            theme_text_color: 'Custom'
+            text_color: 1,1,1,1
+            size_hint_x: 0.1
+
+        MDLabel:
+            text:"truefresh@gmail.com"
+            theme_text_color: 'Custom'
+            text_color: 1,1,1,1
+            bold: True
+            halign: 'center'
+
+    MDCard:
+        padding: sp(12)
+        size_hint: .95, .06
+        #size: "280dp","120dp"
+        adaptive_size: True
+        pos_hint:{"center_x":0.5,"center_y": 0.40}
+        md_bg_color:app.theme_cls.primary_color
+        elevation: sp(20)
+        radius: [sp(10),sp(10),sp(10),sp(10)]
+        orientation:'vertical'
+
+        MDIcon:
+            icon:'facebook'
+            theme_text_color: 'Custom'
+            text_color: 1,1,1,1
+            size_hint_x: 0.1
+
+        MDLabel:
+            text:"TrueFresh"
+            theme_text_color: 'Custom'
+            text_color: 1,1,1,1
+            bold: True
+            halign: 'center'
+
+
+    MDCard:
+        padding: sp(12)
+        size_hint: .95, .06
+        #size: "280dp","120dp"
+        adaptive_size: True
+        pos_hint:{"center_x":0.5,"center_y": 0.31}
+        md_bg_color:app.theme_cls.primary_color
+        elevation: sp(20)
+        radius: [sp(10),sp(10),sp(10),sp(10)]
+        orientation:'vertical'
+
+        MDIcon:
+            icon:'phone'
+            theme_text_color: 'Custom'
+            text_color: 1,1,1,1
+            size_hint_x: 0.1
+
+        MDLabel:
+            text:"+91 9614094199"
+            theme_text_color: 'Custom'
+            text_color: 1,1,1,1
+            bold: True
+            halign: 'center'
+
+    MDCard:
+        padding: sp(12)
+        size_hint: .95, .06
+        #size: "280dp","120dp"
+        adaptive_size: True
+        pos_hint:{"center_x":0.5,"center_y": 0.22}
+        md_bg_color:app.theme_cls.primary_color
+        elevation: sp(20)
+        radius: [sp(10),sp(10),sp(10),sp(10)]
+        orientation:'vertical'
+
+        MDIcon:
+            icon:'instagram'
+            theme_text_color: 'Custom'
+            text_color: 1,1,1,1
+            size_hint_x: 0.1
+            valign: 'center'
+
+        MDLabel:
+            text:"_true_fresh"
+            theme_text_color: 'Custom'
+            text_color: 1,1,1,1
+            bold: True
+            halign: 'center'
+            valign: 'center'
+
+    MDNavigationDrawer:
+        id: nav_drawer
+        ContentNavigationDrawer:
+
+<NinthWindow>:
+    name: 'ninth'
+    MDNavigationLayout:
+        ScreenManager:
+            Screen:
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDToolbar:
+                        title: 'Order Status'
+                        specific_text_color: 1,1,1,1
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state('toggle')]]
+                        elevation:0
+
+                    Widget:
+    MDBoxLayout:
+        size_hint_y: None
+        height: "200dp"
+        orientation: 'vertical'
+        pos_hint: {"center_x": 0.5,"center_y": 0.7}
+
+        Image:
+            size_hint_y: 3
+            source: 'cow.jpg'
+    MDLabel:
+        id: progress
+        text: "IN PROGRESS.."
+        font_name: "BRITANIC.ttf"
+        color: app.theme_cls.primary_color
+        pos_hint: {"center_x": 0.5,"center_y": 0.5}
+        text_color: 1, 1, 0, 1
+        font_size: 18
+        halign: 'center'
+        size_hint_y: None
+        height: self.texture_size[1]
+        padding_y: 15
+
+    MDLabel:
+        id: hint
+        text: "You will receive a call from our Dairy Manager to confirm your order."
+        theme_text_color: "Hint"
+        font_name: "BRITANIC.ttf"
+        pos_hint: {"center_x": 0.5,"center_y": 0.43}
+        font_size: 16
+        halign: 'center'
+        size_hint_y: None
+        height: self.texture_size[1]
+        padding_x: 20
+
+    MDLabel:
+        id: hint
+        text:"It may take few hours to receive a call, please kindly wait."
+        theme_text_color: "Hint"
+        font_name: "BRITANIC.ttf"
+        pos_hint: {"center_x": 0.5,"center_y": 0.12}
+        font_size: 16
+        halign: 'center'
+        size_hint_y: None
+        height: self.texture_size[1]
+        padding_x: 20
+
+    MDFillRoundFlatButton:
+        text: "Order No:                                "
+        text_color: 1,1,245/255,1
+        pos_hint:{'center_x':0.5,'center_y':0.34}
+        font_name: "BRITANIC.ttf"
+        font_size: 16
+        size_hint_y: 0.06
+        size_hint_x: 0.72
+
+    MDFillRoundFlatButton:
+        text: "Date:                                "
+        text_color: 1,1,254/255,1
+        pos_hint:{'center_x':0.5,'center_y':0.25}
+        font_name: "BRITANIC.ttf"
+        font_size: 16
+        size_hint_x: 0.64
+        size_hint_y: 0.06
+
+    MDNavigationDrawer:
+        id: nav_drawer
+        ContentNavigationDrawer:
+
+
+<ContentNavigationDrawer>
+    BoxLayout:
+        orientation: 'vertical'
+
+        MDCard:
+            #size_hint: None, None
+            #size: "280dp", "180dp"
+
+            Image:
+                source: '123.png'
+                pos_hint: {"center_x": 0.5,"center_y": 0.5}
+
+        ScrollView:
+            MDList:
+                spacing:2
+                OneLineIconListItem:
+                    text: 'HOME'
+                    #bg_color: app.theme_cls.primary_color
+                    on_release:
+                        app.root.get_screen(f"{app.root.current}").ids.nav_drawer.set_state("close")
+                        app.root.current = "first"
+                    IconLeftWidget:
+                        icon: 'home-circle-outline'
+
+
+                OneLineIconListItem:
+                    text: 'Order Status'
+                    #bg_color: app.theme_cls.primary_color
+                    on_release:
+                        app.root.get_screen(f"{app.root.current}").ids.nav_drawer.set_state("close")
+                        app.root.current = "ninth"
+                    IconLeftWidget:
+                        icon: 'calculator'
+
+                OneLineIconListItem:
+                    text: 'RATE'
+                    #bg_color: app.theme_cls.primary_color
+                    on_release:
+                        app.root.get_screen(f"{app.root.current}").ids.nav_drawer.set_state("close")
+                        app.root.current = "sixth"
+
+                    IconLeftWidget:
+                        icon: 'cart-outline'
+
+                OneLineIconListItem:
+                    text: 'ABOUT US'
+                    #bg_color: app.theme_cls.primary_color
+                    on_release:
+                        app.root.get_screen(f"{app.root.current}").ids.nav_drawer.set_state("close")
+                        app.root.current = "seventh"
+                    IconLeftWidget:
+                        icon: 'information-outline'
+
+                OneLineIconListItem:
+                    text: 'COMPLAINT'
+                    #bg_color: app.theme_cls.primary_color
+                    on_release:
+                        app.root.get_screen(f"{app.root.current}").ids.nav_drawer.set_state("close")
+                        app.root.current = "four"
+                    IconLeftWidget:
+                        icon: 'chat-alert-outline'
+
+                OneLineIconListItem:
+                    text: 'CONTACT US'
+                    on_release:
+                        app.root.get_screen(f"{app.root.current}").ids.nav_drawer.set_state("close")
+                        app.root.current = "eighth"
+                    IconLeftWidget:
+                        icon: 'cellphone'
+
